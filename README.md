@@ -19,5 +19,9 @@ MVVM is an abbreviation of Model View Veiw model where your presentaion layer wi
 </ul>
 
 <p>
-  
+<div align="center">
+        <img width="45%" src="https://github.com/mrabelwahed/MVVM-Demo/blob/master/device-2018-02-12-215547.png" alt="About screen" title="About screen"</img>
+        <img height="0" width="8px">
+        <img width="45%" src="https://github.com/mrabelwahed/MVVM-Demo/blob/master/device-2018-02-12-215633.png" alt="List screen" title="List screen"></img>
+</div>
 </p>
