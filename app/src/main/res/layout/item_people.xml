@@ -1,0 +1,67 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="peopleViewModel"
+            type="com.ramadan_apps.mvvm_demo.viewmodel.ItemPeopleViewModel"/>
+    </data>
+
+
+    <RelativeLayout
+        android:id="@+id/item_people"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:onClick="@{peopleViewModel::onItemClick}"
+        android:padding="20dp">
+
+
+        <ImageView
+            android:id="@+id/image_people"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            tools:imageUrl="@{peopleViewModel.pictureProfile}"/>
+
+
+        <TextView
+            android:id="@+id/label_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/image_people"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@+id/image_people"
+            android:text="@{peopleViewModel.fullName}"
+            android:textColor="@android:color/primary_text_light"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="mr gary allen"/>
+
+        <TextView
+            android:id="@+id/label_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/label_name"
+            android:layout_below="@+id/label_name"
+            android:text="@{peopleViewModel.cell}"
+            android:textColor="@android:color/secondary_text_light"
+            android:textSize="14sp"
+            tools:text="0729-256-147"/>
+
+        <TextView
+            android:id="@+id/label_mail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/label_phone"
+            android:layout_below="@+id/label_phone"
+            android:text="@{peopleViewModel.mail}"
+            android:textColor="@android:color/secondary_text_light"
+            android:textSize="14sp"
+            tools:text="gary.allen@example.com"/>
+
+    </RelativeLayout>
+
+
+</layout>
