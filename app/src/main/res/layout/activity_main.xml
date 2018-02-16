@@ -45,7 +45,7 @@
             android:id="@+id/progressbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-           app:visibility="@{mainViewModel.peopleProgressbar}"
+            android:visibility="gone"
             />
 
 
@@ -55,14 +55,12 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@{mainViewModel.messageLabel}"
-            app:visibility="@{mainViewModel.peopleLabel}"
-
             />
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:visibility="@{mainViewModel.peopleRecycler}"
+            android:visibility="gone"
             />
 
     </LinearLayout>
@@ -76,6 +74,8 @@
         android:layout_gravity="bottom|end"
         android:src="@android:drawable/ic_input_add"
         android:onClick="@{mainViewModel::onFabBtnClicked}"
+        android:layout_margin="20dp"
+
         />
 
 

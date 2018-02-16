@@ -1,5 +1,6 @@
 package com.ramadan_apps.mvvm_demo.view;
 
+import android.arch.lifecycle.LifecycleOwner;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import com.ramadan_apps.mvvm_demo.R;
 import com.ramadan_apps.mvvm_demo.databinding.ItemPeopleBinding;
 import com.ramadan_apps.mvvm_demo.model.People;
 import com.ramadan_apps.mvvm_demo.viewmodel.ItemPeopleViewModel;
+import com.ramadan_apps.mvvm_demo.viewmodel.MainViewModel;
 
 import java.util.Collections;
 import java.util.List;
@@ -22,8 +24,12 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleAdap
 
     private List<People> peopleList;
 
-    public PeopleAdapter() {
+    public PeopleAdapter(MainViewModel mainViewModel ,LifecycleOwner owner) {
         this.peopleList = Collections.emptyList();
+        mainViewModel.getReposObservable().observe(owner , repos ->{
+            setPeopleList(repos);
+        });
+
     }
 
     @Override public PeopleAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
