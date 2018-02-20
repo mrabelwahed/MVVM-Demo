@@ -8,6 +8,7 @@ import com.ramadan_apps.mvvm_demo.data.PeopleService;
 
 import io.reactivex.Scheduler;
 import io.reactivex.schedulers.Schedulers;
+import io.realm.Realm;
 
 /**
  * Created by Mahmoud Ramadan on 2/11/18.
@@ -16,6 +17,12 @@ import io.reactivex.schedulers.Schedulers;
 public class MyApp extends Application {
     private PeopleService peopleService;
     private Scheduler scheduler;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Realm.init(this);
+    }
 
     private static MyApp get(Context context) {
         return (MyApp) context.getApplicationContext();

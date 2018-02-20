@@ -2,7 +2,6 @@ package com.ramadan_apps.mvvm_demo.data.people;
 
 import java.util.List;
 
-import io.reactivex.Completable;
 import io.reactivex.Flowable;
 
 /**
@@ -17,7 +16,7 @@ public interface PeopleRepoContract {
 
      interface Local<T>{
       Flowable<List<T>> getCachedPeoples();
-      Completable savePeoples(List<T> peoples);
+      void savePeoples(List<T> peoples);
 
     }
 

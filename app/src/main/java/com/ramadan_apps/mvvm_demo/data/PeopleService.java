@@ -1,6 +1,6 @@
 package com.ramadan_apps.mvvm_demo.data;
 
-import io.reactivex.Observable;
+import io.reactivex.Flowable;
 import retrofit2.http.GET;
 import retrofit2.http.Url;
 
@@ -11,6 +11,6 @@ import retrofit2.http.Url;
 public interface PeopleService {
 
     @GET
-    Observable<PeopleResponse> fetchPeople(@Url String url);
+    Flowable<PeopleResponse> fetchPeople(@Url String url);
 
 }

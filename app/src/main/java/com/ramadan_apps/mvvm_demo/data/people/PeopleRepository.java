@@ -13,16 +13,16 @@ import io.reactivex.Flowable;
 public  class PeopleRepository implements PeopleRepoContract.Repository<People> {
 
     public static  PeopleRepository INSTANCE = null;
-    public PeopleRepoContract.Remote remoteDataSource;
-    public PeopleRepoContract.Local localDateSource;
+    public PeopleRemoteDataSource remoteDataSource;
+    public PeopleLocalDataSource localDateSource;
 
-    private PeopleRepository( PeopleRepoContract.Remote remoteDataSource, PeopleRepoContract.Local localDateSource){
+    private PeopleRepository( PeopleRemoteDataSource remoteDataSource, PeopleLocalDataSource localDateSource){
         this.remoteDataSource = remoteDataSource;
         this.localDateSource = localDateSource;
     }
 
 
-    public static PeopleRepository getInstance(PeopleRepoContract.Remote remoteDataSource, PeopleRepoContract.Local localDateSource){
+    public static PeopleRepository getInstance(PeopleRemoteDataSource remoteDataSource, PeopleLocalDataSource localDateSource){
         if (INSTANCE == null)
             INSTANCE = new PeopleRepository(remoteDataSource,localDateSource);
         return INSTANCE;

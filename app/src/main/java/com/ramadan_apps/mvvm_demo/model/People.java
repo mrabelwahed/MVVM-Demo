@@ -4,11 +4,12 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+import io.realm.RealmObject;
+
 /**
  * Created by Mahmoud Ramadan on 2/10/18.
  */
-
-public class People implements Serializable {
+public class People extends RealmObject implements Serializable {
     @SerializedName("gender") public String gender;
 
     @SerializedName("name") public Name name;

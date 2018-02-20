@@ -7,12 +7,13 @@ import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 
-import com.ramadan_apps.mvvm_demo.MyApp;
 import com.ramadan_apps.mvvm_demo.R;
-import com.ramadan_apps.mvvm_demo.data.PeopleFactory;
-import com.ramadan_apps.mvvm_demo.data.PeopleService;
+import com.ramadan_apps.mvvm_demo.data.people.PeopleLocalDataSource;
+import com.ramadan_apps.mvvm_demo.data.people.PeopleRemoteDataSource;
+import com.ramadan_apps.mvvm_demo.data.people.PeopleRepository;
 import com.ramadan_apps.mvvm_demo.model.People;
 
 import java.util.ArrayList;
@@ -35,12 +36,15 @@ public class MainViewModel  extends AndroidViewModel{
 
     public ObservableField<String> messageLabel;
 
+    private static final String TAG = MainViewModel.class.getSimpleName();
+
     public MutableLiveData<Boolean> getRecyclerViewObservable() {
         return recyclerViewObservable;
     }
 
     private List<People> peopleList;
     private Context context;
+    public PeopleRepository peopleRepository;
 
     private CompositeDisposable compositeDisposable  = new CompositeDisposable();
 
@@ -49,6 +53,8 @@ public class MainViewModel  extends AndroidViewModel{
         this.peopleList = new ArrayList<>();
         this.context = application.getApplicationContext();
          messageLabel = new ObservableField<>(context.getString(R.string.default_loading_people));
+         peopleRepository =PeopleRepository.getInstance(new PeopleRemoteDataSource(context),
+                 new PeopleLocalDataSource());
     }
 
 
@@ -83,17 +89,15 @@ public class MainViewModel  extends AndroidViewModel{
     }
 
     private void fetchPeopleList(){
-        MyApp peopleApplication = MyApp.create(context);
-        PeopleService peopleService = peopleApplication.getPeopleService();
 
-        Disposable disposable = peopleService.fetchPeople(PeopleFactory.RANDOM_USER_URL)
-                .subscribeOn(peopleApplication.subscribeScheduler())
+        Disposable disposable = peopleRepository.getPeople()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(peopleResponse -> {
+                .subscribe(peoples -> {
                     progressbarObservable.setValue(false);
                     labelObservable.setValue(false);
-                    reposObservable.setValue(peopleResponse.getPeopleList());
+                    reposObservable.setValue(peoples);
                 }, throwable -> {
+                    Log.e(TAG,throwable.getMessage());
                     messageLabel.set(context.getString(R.string.error_loading_people));
                     progressbarObservable.setValue(false);
                     labelObservable.setValue(true);
