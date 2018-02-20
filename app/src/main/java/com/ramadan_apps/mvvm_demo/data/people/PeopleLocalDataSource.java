@@ -1,5 +1,7 @@
 package com.ramadan_apps.mvvm_demo.data.people;
 
+import android.util.Log;
+
 import com.ramadan_apps.mvvm_demo.model.People;
 
 import java.util.List;
@@ -20,7 +22,11 @@ public class PeopleLocalDataSource implements PeopleRepoContract.Local<People> {
         return  Flowable.just(
                 realm.copyFromRealm(realm.where(People.class).findAllAsync()))
                 .filter(people -> !people.isEmpty())
+                .doOnNext(it -> {
+                    Log.d(TAG,"Dispatching"+it.size()+"From DB");
+                })
                 .doOnComplete(realm::close);
+                //.subscribeOn(Schedulers.io());
     }
 
     @Override

@@ -31,14 +31,6 @@ public  class PeopleRepository implements PeopleRepoContract.Repository<People> 
 
     @Override
     public Flowable<List<People>> getPeople() {
-
-          Flowable <List<People>>cachedPeople =localDateSource.getCachedPeoples();
-          Flowable<List<People>> remotePeople = remoteDataSource.getRemotePeoples();
-
-        return Flowable.
-                concat(cachedPeople,remotePeople)
-                .filter(peoples -> !peoples.isEmpty())
-                 .firstOrError()
-                 .toFlowable();
+        return Flowable.concat(localDateSource.getCachedPeoples(),remoteDataSource.getRemotePeoples());
     }
 }

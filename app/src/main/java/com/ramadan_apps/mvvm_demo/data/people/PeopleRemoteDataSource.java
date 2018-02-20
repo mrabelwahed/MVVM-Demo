@@ -34,7 +34,6 @@ public class PeopleRemoteDataSource implements PeopleRepoContract.Remote<People>
                     Log.d(TAG,"Dispatching"+it.size()+"From People APi");
                     peopleLocalDataSource.savePeoples(it);
                 })
-               .subscribeOn(Schedulers.io())
-               .observeOn(Schedulers.io());
+               .subscribeOn(Schedulers.io());
     }
 }
