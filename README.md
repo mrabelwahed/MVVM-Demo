@@ -8,14 +8,26 @@ MVVM is an abbreviation of Model View Veiw model where your presentaion layer wi
 <Br/> <b>View</b> : is your activity/fragment where UI Exists and they send events to View model and receive notifications form view model
 <Br/> <b>View Model</b> : in the middle of view and model 
 
+<div id="container">
+    <img src="https://cdn-images-1.medium.com/max/1600/0*yly0KHFsJEPdxwUM.png" alt="" />
+</div>
+<p>This repo contains the following branches
+  <ul>
+    <li><b>master</b>: contains MVVM architecture with out android arch components or repository</li>
+   <li><b>feature/mvvm-arch</b>: contains MVVM architecture with  android arch components only</li>
+   <li><b>feature/mvvm-arch-repository</b>: contains MVVM architecture with android arch components and repository</li>
+  </ul>
+</p>
 
 </p>
-<h2> Used Libs</h2>
+<h2> Used Libraries</h2>
 <ul>
 <li>Rxjava2</li>
 <li>Retrofit</li>
 <li>Gson</li>
 <li>Databinding</li>
+ <li>Android Architecture Components</li>
+<li>Realm</li>
 </ul>
 
 <p>
